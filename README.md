@@ -2,7 +2,7 @@
 
 # Bear API Service
 
-Thư viện tham chiếu 1 số API public tại https://api.nguyeanhung.com/
+Thư viện tham chiếu 1 số API public tại https://api.nguyenanhung.com/
 
 ## Cài đặt & Sử dụng
 
