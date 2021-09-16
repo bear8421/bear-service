@@ -7,6 +7,7 @@ Thư viện tham chiếu 1 số API public tại https://api.nguyeanhung.com/
 ### Yêu cầu chung
 
 - [x] Phiên bản PHP `^7.0 || ^8.0`, được bật các thư viện: `curl, json, mbstring`
+- [x] Các tham số: `clientId`, `clientPrefix`, `secretToken` và `bearerToken` là các tham số bảo mật, được cấp phát riêng cho từng người
 
 ### Cài đặt thư viện
 
