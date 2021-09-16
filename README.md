@@ -2,11 +2,19 @@
 
 Thư viện tham chiếu 1 số API public tại https://api.nguyeanhung.com/
 
-## Cài đặt thư viện
+## Cài đặt & Sử dụng
+
+### Cài đặt thư viện
+
+Cài đặt thư viện thông qua composer với lệnh sau
+
+```shell
+composer require bear8421/bear-service
+```
 
 ## License
 
-Thư viện được phân phối dưới giấy phép MIT, chi tiết tham khảo:
+Thư viện được phân phối dưới giấy phép MIT, chi tiết tham khảo: https://github.com/bear8421/bear-service/blob/main/LICENSE
 
 ## Liên hệ & Hỗ trợ
 
