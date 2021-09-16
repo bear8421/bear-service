@@ -19,5 +19,16 @@ namespace Bear8421\Bear\Services\Traits;
  */
 trait Version
 {
-
+    /**
+     * Function getVersion
+     *
+     * @return string
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/16/2021 03:27
+     */
+    public function getVersion(): string
+    {
+        return self::VERSION;
+    }
 }

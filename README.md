@@ -1,3 +1,5 @@
+[![Latest Stable Version](http://poser.pugx.org/bear8421/bear-service/v)](https://packagist.org/packages/bear8421/bear-service) [![Total Downloads](http://poser.pugx.org/bear8421/bear-service/downloads)](https://packagist.org/packages/bear8421/bear-service) [![Latest Unstable Version](http://poser.pugx.org/bear8421/bear-service/v/unstable)](https://packagist.org/packages/bear8421/bear-service) [![License](http://poser.pugx.org/bear8421/bear-service/license)](https://packagist.org/packages/bear8421/bear-service) [![PHP Version Require](http://poser.pugx.org/bear8421/bear-service/require/php)](https://packagist.org/packages/bear8421/bear-service)
+
 # Bear API Service
 
 Thư viện tham chiếu 1 số API public tại https://api.nguyeanhung.com/

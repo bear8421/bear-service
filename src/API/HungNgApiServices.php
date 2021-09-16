@@ -197,9 +197,7 @@ class HungNgApiServices implements Environment
     public function createOrUpdateHtpasswd(string $username = '', string $password = '', string $serverId = '')
     {
         $request = new Request();
-        $request->setDebugStatus($this->DEBUG)
-                ->setLoggerPath($this->loggerPath)
-                ->setAuthBearerToken($this->bearerToken);
+        $request->setDebugStatus($this->DEBUG)->setLoggerPath($this->loggerPath)->setAuthBearerToken($this->bearerToken);
         $uri    = '/htpasswd/createOrUpdate';
         $params = [
             'clientId'  => $this->clientId,
@@ -226,9 +224,7 @@ class HungNgApiServices implements Environment
     public function getListUser(string $username = '', string $serverId = '')
     {
         $request = new Request();
-        $request->setDebugStatus($this->DEBUG)
-                ->setLoggerPath($this->loggerPath)
-                ->setAuthBearerToken($this->bearerToken);
+        $request->setDebugStatus($this->DEBUG)->setLoggerPath($this->loggerPath)->setAuthBearerToken($this->bearerToken);
         $uri    = '/htpasswd/getListUser';
         $params = [
             'clientId'  => $this->clientId,
