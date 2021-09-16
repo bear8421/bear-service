@@ -1,0 +1,36 @@
+{
+    "name": "bear8421/bear-service",
+    "type": "library",
+    "description": "Bear Service API Interface",
+    "keywords": [
+        "bear",
+        "helper",
+        "php"
+    ],
+    "homepage": "https://github.com/bear8421/bear-service",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Nguyen An Hung",
+            "email": "dev@nguyenanhung.com",
+            "homepage": "https://nguyenanhung.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.0 || ^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "php-curl-class/php-curl-class": "^9.4",
+        "monolog/monolog": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bear8421\\Bear\\Services\\": "src/"
+        },
+        "files": [
+            "helpers/helpers.php"
+        ]
+    }
+}
