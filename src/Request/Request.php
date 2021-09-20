@@ -50,7 +50,7 @@ class Request implements Environment
     protected $timeout = 60;
 
     /** @var array|null Header List */
-    protected $header = null;
+    protected $header;
 
     /** @var string $authUsername */
     protected $authUsername;
@@ -59,7 +59,7 @@ class Request implements Environment
     protected $authPassword;
 
     /** @var string|null $authBearerToken */
-    protected $authBearerToken = null;
+    protected $authBearerToken;
 
     /** @var bool $basicAuthentication */
     protected $basicAuthentication = false;
@@ -310,19 +310,19 @@ class Request implements Environment
                 $curl->setHeader("Authorization", 'Bearer ' . $this->authBearerToken);
             }
             // Request
-            if ('POST' == $getMethod) {
+            if ('POST' === $getMethod) {
                 $curl->post($url, $data);
-            } elseif ('PUT' == $getMethod) {
+            } elseif ('PUT' === $getMethod) {
                 $curl->put($url, $data);
-            } elseif ('PATCH' == $getMethod) {
+            } elseif ('PATCH' === $getMethod) {
                 $curl->patch($url, $data);
-            } elseif ('HEAD' == $getMethod) {
+            } elseif ('HEAD' === $getMethod) {
                 $curl->head($url, $data);
-            } elseif ('OPTIONS' == $getMethod) {
+            } elseif ('OPTIONS' === $getMethod) {
                 $curl->options($url, $data);
-            } elseif ('SEARCH' == $getMethod) {
+            } elseif ('SEARCH' === $getMethod) {
                 $curl->search($url, $data);
-            } elseif ('JSON' == $getMethod) {
+            } elseif ('JSON' === $getMethod) {
                 $curl->setHeader("Content-Type", "application/json");
                 $curl->post($url, $data);
             } else {
@@ -331,12 +331,10 @@ class Request implements Environment
             // Response
             if ($curl->error) {
                 $response = "cURL Error: " . $curl->errorMessage;
+            } elseif (isset($curl->rawResponse)) {
+                $response = $curl->rawResponse;
             } else {
-                if (isset($curl->rawResponse)) {
-                    $response = $curl->rawResponse;
-                } else {
-                    $response = $curl->response;
-                }
+                $response = $curl->response;
             }
             // Close Request
             $curl->close();
@@ -394,8 +392,6 @@ class Request implements Environment
             $head[] = "Content-type: text/xml;charset=utf-8";
             curl_setopt($ch, CURLOPT_HTTPHEADER, $head);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
             curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);

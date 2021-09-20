@@ -37,13 +37,13 @@ class HungNgApiServices implements Environment
     protected $secretToken;
 
     /** @var string $bearerToken */
-    protected $bearerToken = null;
+    protected $bearerToken;
 
     /** @var bool $DEBUG status */
     protected $DEBUG = false;
 
     /** @var string|null Logger Path */
-    protected $loggerPath = null;
+    protected $loggerPath = '';
 
     /**
      * HungNgApiServices constructor.
