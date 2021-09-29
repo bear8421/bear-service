@@ -25,7 +25,7 @@ class HungNgApiServices implements Environment
 {
     use Version;
 
-    const ENDPOINT = 'https://api.nguyenanhung.com/api/v1/';
+    const ENDPOINT = 'https://api.nguyenanhung.com/api/v1';
 
     /** @var string $clientId */
     protected $clientId;
