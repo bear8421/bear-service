@@ -31,7 +31,7 @@ class Output
      */
     public static function writeLn($message, string $newLine = "\n")
     {
-        if (function_exists('json_encode') && (is_array($message) || is_object($message))) {
+        if (is_array($message) || is_object($message)) {
             $message = json_encode($message);
         }
         echo $message . $newLine;
