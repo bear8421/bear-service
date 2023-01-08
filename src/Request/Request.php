@@ -274,7 +274,7 @@ class Request implements Environment
             $getMethod = strtoupper($method);
             // create a log channel
             $formatter = new LineFormatter($this->mono['outputFormat'], $this->mono['dateFormat']);
-            $stream    = new StreamHandler($this->loggerPath . 'sendRequest/' . $this->loggerFile, Logger::INFO, $this->mono['monoBubble'], $this->mono['monoFilePermission']);
+            $stream = new StreamHandler($this->loggerPath . 'sendRequest/' . $this->loggerFile, Logger::INFO, $this->mono['monoBubble'], $this->mono['monoFilePermission']);
             $stream->setFormatter($formatter);
             $logger = new Logger('Curl');
             $logger->pushHandler($stream);
@@ -306,7 +306,7 @@ class Request implements Environment
             if ($this->isXml) {
                 $curl->setHeader("Content-Type", "text/xml");
             }
-            if ($this->authBearerToken !== null && is_string($this->authBearerToken)) {
+            if (is_string($this->authBearerToken)) {
                 $curl->setHeader("Authorization", 'Bearer ' . $this->authBearerToken);
             }
             // Request
@@ -379,7 +379,7 @@ class Request implements Environment
         try {
             // create a log channel
             $formatter = new LineFormatter($this->mono['outputFormat'], $this->mono['dateFormat']);
-            $stream    = new StreamHandler($this->loggerPath . 'xmlRequest/' . $this->loggerFile, Logger::INFO, $this->mono['monoBubble'], $this->mono['monoFilePermission']);
+            $stream = new StreamHandler($this->loggerPath . 'xmlRequest/' . $this->loggerFile, Logger::INFO, $this->mono['monoBubble'], $this->mono['monoFilePermission']);
             $stream->setFormatter($formatter);
             $logger = new Logger('request');
             $logger->pushHandler($stream);

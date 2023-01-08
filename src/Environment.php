@@ -19,7 +19,7 @@ namespace Bear8421\Bear\Services;
  */
 interface Environment
 {
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.3';
 
     /**
      * Function getVersion
