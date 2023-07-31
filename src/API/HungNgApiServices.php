@@ -57,9 +57,9 @@ class HungNgApiServices implements Environment
      */
     public function __construct($clientId, $clientPrefix, $secretToken)
     {
-        $this->clientId     = $clientId;
+        $this->clientId = $clientId;
         $this->clientPrefix = $clientPrefix;
-        $this->secretToken  = $secretToken;
+        $this->secretToken = $secretToken;
     }
 
     /**
@@ -198,7 +198,7 @@ class HungNgApiServices implements Environment
     {
         $request = new Request();
         $request->setDebugStatus($this->DEBUG)->setLoggerPath($this->loggerPath)->setAuthBearerToken($this->bearerToken);
-        $uri    = '/htpasswd/createOrUpdate';
+        $uri = '/htpasswd/createOrUpdate';
         $params = [
             'clientId'  => $this->clientId,
             'signature' => $this->generateSignature($serverId, $username),
@@ -225,7 +225,7 @@ class HungNgApiServices implements Environment
     {
         $request = new Request();
         $request->setDebugStatus($this->DEBUG)->setLoggerPath($this->loggerPath)->setAuthBearerToken($this->bearerToken);
-        $uri    = '/htpasswd/getListUser';
+        $uri = '/htpasswd/getListUser';
         $params = [
             'clientId'  => $this->clientId,
             'signature' => $this->generateSignature($serverId, $username),
@@ -234,5 +234,21 @@ class HungNgApiServices implements Environment
         ];
 
         return $request->sendRequest(self::ENDPOINT . $uri, $params);
+    }
+
+    /**
+     * Function getMe
+     *
+     * @return string|null
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 31/07/2023 02:12
+     */
+    public function getMe()
+    {
+        $request = new Request();
+        $api = 'https://api.nguyenanhung.com/me';
+
+        return $request->sendRequest($api);
     }
 }
