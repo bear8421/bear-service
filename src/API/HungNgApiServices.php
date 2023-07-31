@@ -11,6 +11,7 @@
 namespace Bear8421\Bear\Services\API;
 
 use Bear8421\Bear\Services\Environment;
+use Bear8421\Bear\Services\Traits\Helper;
 use Bear8421\Bear\Services\Traits\Version;
 use Bear8421\Bear\Services\Request\Request;
 
@@ -23,7 +24,7 @@ use Bear8421\Bear\Services\Request\Request;
  */
 class HungNgApiServices implements Environment
 {
-    use Version;
+    use Version, Helper;
 
     const ENDPOINT = 'https://api.nguyenanhung.com/api/v1';
 
@@ -234,21 +235,5 @@ class HungNgApiServices implements Environment
         ];
 
         return $request->sendRequest(self::ENDPOINT . $uri, $params);
-    }
-
-    /**
-     * Function getMe
-     *
-     * @return string|null
-     * @author   : 713uk13m <dev@nguyenanhung.com>
-     * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 31/07/2023 02:12
-     */
-    public function getMe()
-    {
-        $request = new Request();
-        $api = 'https://api.nguyenanhung.com/me';
-
-        return $request->sendRequest($api);
     }
 }

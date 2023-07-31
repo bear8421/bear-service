@@ -121,6 +121,7 @@ GitHub.sublime-settings
 /vendor/
 composer.lock
 /tests/*
+test.php
 
 cache/*
 !cache/.htaccess
