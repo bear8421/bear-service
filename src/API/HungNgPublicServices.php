@@ -44,7 +44,6 @@ class HungNgPublicServices implements Environment
         if ($this->isJson($json)) {
             return json_decode($json, false);
         }
-
         return null;
     }
 
@@ -59,7 +58,6 @@ class HungNgPublicServices implements Environment
     public function getInfoOfMe()
     {
         $me = $this->getMe();
-
         return $me->info ?? null;
     }
 }

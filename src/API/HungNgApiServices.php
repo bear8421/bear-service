@@ -77,7 +77,6 @@ class HungNgApiServices implements Environment
     protected function generateSignature(string $serverId, string $username): string
     {
         $validSignStr = $this->clientId . $this->clientPrefix . $this->secretToken . $serverId . $username;
-
         return sha1($validSignStr);
     }
 
@@ -94,7 +93,6 @@ class HungNgApiServices implements Environment
     public function setDebugStatus(bool $status = true): HungNgApiServices
     {
         $this->DEBUG = $status;
-
         return $this;
     }
 
@@ -111,7 +109,6 @@ class HungNgApiServices implements Environment
     public function setLoggerPath(string $loggerPath = ''): HungNgApiServices
     {
         $this->loggerPath = $loggerPath;
-
         return $this;
     }
 
@@ -128,7 +125,6 @@ class HungNgApiServices implements Environment
     public function setClientId(string $clientId): HungNgApiServices
     {
         $this->clientId = $clientId;
-
         return $this;
     }
 
@@ -145,7 +141,6 @@ class HungNgApiServices implements Environment
     public function setClientPrefix(string $clientPrefix): HungNgApiServices
     {
         $this->clientPrefix = $clientPrefix;
-
         return $this;
     }
 
@@ -162,7 +157,6 @@ class HungNgApiServices implements Environment
     public function setSecretToken(string $secretToken): HungNgApiServices
     {
         $this->secretToken = $secretToken;
-
         return $this;
     }
 
@@ -179,7 +173,6 @@ class HungNgApiServices implements Environment
     public function setBearerToken(string $bearerToken): HungNgApiServices
     {
         $this->bearerToken = $bearerToken;
-
         return $this;
     }
 
@@ -201,13 +194,12 @@ class HungNgApiServices implements Environment
         $request->setDebugStatus($this->DEBUG)->setLoggerPath($this->loggerPath)->setAuthBearerToken($this->bearerToken);
         $uri = '/htpasswd/createOrUpdate';
         $params = [
-            'clientId'  => $this->clientId,
+            'clientId' => $this->clientId,
             'signature' => $this->generateSignature($serverId, $username),
-            'username'  => $username,
-            'password'  => $password,
+            'username' => $username,
+            'password' => $password,
             'server_id' => $serverId
         ];
-
         return $request->sendRequest(self::ENDPOINT . $uri, $params, 'POST');
     }
 
@@ -228,12 +220,11 @@ class HungNgApiServices implements Environment
         $request->setDebugStatus($this->DEBUG)->setLoggerPath($this->loggerPath)->setAuthBearerToken($this->bearerToken);
         $uri = '/htpasswd/getListUser';
         $params = [
-            'clientId'  => $this->clientId,
+            'clientId' => $this->clientId,
             'signature' => $this->generateSignature($serverId, $username),
-            'username'  => $username,
+            'username' => $username,
             'server_id' => $serverId
         ];
-
         return $request->sendRequest(self::ENDPOINT . $uri, $params);
     }
 }
