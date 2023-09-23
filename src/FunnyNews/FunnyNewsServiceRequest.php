@@ -86,6 +86,7 @@ class FunnyNewsServiceRequest extends HungNgApiServices
                         $results['url'][] = $item->loc;
                     }
                 }
+                unset($resMapCategory);
                 return $results;
             }
             unset($mapLoc);
