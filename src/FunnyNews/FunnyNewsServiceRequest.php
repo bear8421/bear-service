@@ -42,7 +42,16 @@ class FunnyNewsServiceRequest extends HungNgApiServices
                 'errorMessage' => 'Không request được tới API ' . self::ENDPOINT
             ];
         }
-        return json_decode($request, false);
+        $res = json_decode($request, false);
+        if (isset($res->message) && $res->message === 0) {
+            return [
+                'message' => $res->message,
+                'list_url' => $res->list_url,
+            ];
+        }
+        return [
+            'errorMessage' => 'Có lỗi xảy ra khi lấy dữ liệu tại API ' . self::ENDPOINT
+        ];
     }
 
     public function handleRequestServiceSitemapIndex($domain = '')
