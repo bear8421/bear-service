@@ -19,18 +19,19 @@ class FunnyNewsServiceRequest extends HungNgApiServices
     use Version, Helper;
 
     const ENDPOINT = 'https://api.nguyenanhung.com/funny_news/api';
+    const FUNNY_DEMO_DOMAIN = 'https://news.tramtro.com/';
 
     public function __construct($clientId, $clientPrefix, $secretToken)
     {
         parent::__construct($clientId, $clientPrefix, $secretToken);
     }
 
-    public function handleRequestServiceREST($domain = '')
+    public function handleRequestServiceREST($domain = ''): array
     {
         if (empty($domain)) {
-            $domain = 'https://news.tramtro.com/';
+            $domain = self::FUNNY_DEMO_DOMAIN;
         }
-        $signature = md5($this->clientId . '|' . $domain . '|' . $this->secretToken);
+        $signature = md5($this->clientId . $this->clientPrefix . $domain . $this->clientPrefix . $this->secretToken);
         $params = [
             'domain' => $domain,
             'username' => $this->clientId,
@@ -56,8 +57,7 @@ class FunnyNewsServiceRequest extends HungNgApiServices
 
     public function handleRequestServiceSitemapIndex($domain = '')
     {
-        $funnyDomain = 'https://news.tramtro.com/';
-        if ($domain === $funnyDomain) {
+        if ($domain === self::FUNNY_DEMO_DOMAIN) {
             $sitemapCategoryIndex = $domain . 'sitemap/request-category.xml';
         } else {
             $sitemapCategoryIndex = $domain . 'sitemap/category.xml';
@@ -66,5 +66,32 @@ class FunnyNewsServiceRequest extends HungNgApiServices
         $resMapCategoryIndex = simplexml_load_string($reqMapCategoryIndex, 'SimpleXMLElement', LIBXML_NOCDATA);
         unset($reqMapCategoryIndex);
         return $resMapCategoryIndex;
+    }
+
+    public function handleRequestServiceSitemapCategory($domain, $map): array
+    {
+        if (isset($map->loc)) {
+            $mapLoc = trim($map->loc);
+            if ($mapLoc !== $domain) {
+                if (($domain !== self::FUNNY_DEMO_DOMAIN) && (!strpos($mapLoc, 'sitemap/category/'))) {
+                    $mapLoc = str_replace($domain, $domain . 'sitemap/category/', $mapLoc);
+                }
+                $reqMapCategory = sendSimpleRequest($mapLoc);
+                $resMapCategory = simplexml_load_string($reqMapCategory, 'SimpleXMLElement', LIBXML_NOCDATA);
+                unset($reqMapCategory);
+                $results = array();
+                $results['url'] = array();
+                foreach ($resMapCategory as $item) {
+                    if (isset($item->loc)) {
+                        $results['url'][] = $item->loc;
+                    }
+                }
+                return $results;
+            }
+            unset($mapLoc);
+        }
+        return [
+            'errorMessage' => 'Map này không tồn tại dữ liệu'
+        ];
     }
 }
