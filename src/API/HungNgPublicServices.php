@@ -60,4 +60,23 @@ class HungNgPublicServices implements Environment
         $me = $this->getMe();
         return $me->info ?? null;
     }
+
+    /**
+     * Function getProfileOfMe
+     *
+     * @return mixed|null
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 31/10/2023 16:35
+     */
+    public function getProfileOfMe()
+    {
+        $request = new Request();
+        $api = self::ENDPOINT . '/me/profile';
+        $json = $request->sendRequest($api);
+        if ($this->isJson($json)) {
+            return json_decode($json, false);
+        }
+        return null;
+    }
 }
