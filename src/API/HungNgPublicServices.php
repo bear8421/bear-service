@@ -28,6 +28,14 @@ class HungNgPublicServices implements Environment
 
     const ENDPOINT = 'https://api.nguyenanhung.com';
 
+    private $toArrayResponse = false;
+
+    public function toArray(): self
+    {
+        $this->toArrayResponse = true;
+        return $this;
+    }
+
     /**
      * Function getMe
      *
@@ -42,6 +50,9 @@ class HungNgPublicServices implements Environment
         $api = self::ENDPOINT . '/me';
         $json = $request->sendRequest($api);
         if ($this->isJson($json)) {
+            if ($this->toArrayResponse === true) {
+                return json_decode($json, true);
+            }
             return json_decode($json, false);
         }
         return null;
@@ -58,6 +69,9 @@ class HungNgPublicServices implements Environment
     public function getInfoOfMe()
     {
         $me = $this->getMe();
+        if ($this->toArrayResponse === true) {
+            return $me['info'] ?? null;
+        }
         return $me->info ?? null;
     }
 
@@ -75,6 +89,9 @@ class HungNgPublicServices implements Environment
         $api = self::ENDPOINT . '/me/profile';
         $json = $request->sendRequest($api);
         if ($this->isJson($json)) {
+            if ($this->toArrayResponse === true) {
+                return json_decode($json, true);
+            }
             return json_decode($json, false);
         }
         return null;
