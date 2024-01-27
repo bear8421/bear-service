@@ -10,11 +10,12 @@
 
 namespace Bear8421\Bear\Services\Tools;
 
+use Bear8421\Bear\Services\API\HungNgToolsServices;
 use Bear8421\Bear\Services\Traits\Response;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
-class AccuWeather extends Tools
+class AccuWeather extends HungNgToolsServices
 {
     use Response;
 
