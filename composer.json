@@ -26,6 +26,9 @@
         "ext-simplexml": "*",
         "nguyenanhung/requests": "^3.0 || ^2.0 || ^1.0"
     },
+    "require-dev": {
+        "kint-php/kint": "^1 || ^2 || ^3 || ^4 || ^5"
+    },
     "autoload": {
         "psr-4": {
             "Bear8421\\Bear\\Services\\": "src/"
