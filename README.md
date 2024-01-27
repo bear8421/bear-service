@@ -27,8 +27,8 @@ file [LICENSE](https://github.com/bear8421/bear-service/blob/main/LICENSE)
 
 ## Liên hệ & Hỗ trợ
 
-| Name        | Email                | Skype            | Facebook      |
-|-------------|----------------------|------------------|---------------|
-| Hung Nguyen | dev@nguyenanhung.com | nguyenanhung5891 | @nguyenanhung |
+| Name        | Email                | GitHub        | Facebook      |
+|-------------|----------------------|---------------|---------------|
+| Hung Nguyen | dev@nguyenanhung.com | @nguyenanhung | @nguyenanhung |
 
 From Vietnam with Love <3
