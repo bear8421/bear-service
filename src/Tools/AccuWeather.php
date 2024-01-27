@@ -34,7 +34,7 @@ class AccuWeather extends HungNgToolsServices
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/01/2021 25:11
      */
-    protected function convertFoC(int $F = 1): string
+    public function convertFoC(int $F = 1): string
     {
         $C = ($F - 32) / 1.8;
         return number_format($C);
