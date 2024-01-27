@@ -31,9 +31,9 @@ class Request implements Environment
 
     /** @var array Monolog configure */
     protected $mono = [
-        'dateFormat'         => "Y-m-d H:i:s u",
-        'outputFormat'       => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n",
-        'monoBubble'         => true,
+        'dateFormat' => "Y-m-d H:i:s u",
+        'outputFormat' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n",
+        'monoBubble' => true,
         'monoFilePermission' => 0777
     ];
 
@@ -260,7 +260,7 @@ class Request implements Environment
      * Function sendRequest
      *
      * @param string $url
-     * @param array  $data
+     * @param array $data
      * @param string $method
      *
      * @return string|null
@@ -364,7 +364,7 @@ class Request implements Environment
      *
      * @param string $url
      * @param string $data
-     * @param int    $timeout
+     * @param int $timeout
      *
      * @return bool|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
