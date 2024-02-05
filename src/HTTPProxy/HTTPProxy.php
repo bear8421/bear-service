@@ -84,9 +84,9 @@ class HTTPProxy implements Environment
 				]);
 
 				// Kiểm tra URL bằng phương thức HEAD
-				$response = @file_get_contents($url, false, $context);
+				$response_contents = @file_get_contents($url, false, $context);
 
-				if ($response !== false) {
+				if ($response_contents !== false) {
 					// URL hợp lệ và có thể truy cập, bạn có thể sử dụng file_get_contents để lấy nội dung
 					$res = file_get_contents($url);
 				} else {
