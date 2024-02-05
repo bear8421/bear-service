@@ -76,7 +76,23 @@ class HTTPProxy implements Environment
 			];
 		} else {
 			if ($with === 'basic') {
-				$res = file_get_contents($url);
+				$context = stream_context_create([
+					'http' => [
+						'method' => 'HEAD',
+						'follow_location' => 0, // Tắt chuyển hướng
+					],
+				]);
+
+				// Kiểm tra URL bằng phương thức HEAD
+				$response = @file_get_contents($url, false, $context);
+
+				if ($response !== false) {
+					// URL hợp lệ và có thể truy cập, bạn có thể sử dụng file_get_contents để lấy nội dung
+					$res = file_get_contents($url);
+				} else {
+					// URL không hợp lệ hoặc không thể truy cập
+					$res = null;
+				}
 			} else {
 				$request = new MyRequests();
 				if (empty($params)) {
