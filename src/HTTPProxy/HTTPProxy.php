@@ -76,12 +76,7 @@ class HTTPProxy implements Environment
 			];
 		} else {
 			if ($with === 'basic') {
-				$content = new GetContents();
-				$content->setURL($url);
-				$content->setMethod($method);
-				$content->setData($params);
-				$content->sendRequest();
-				$res = $content->getContent();
+				$res = file_get_contents($url);
 			} else {
 				$request = new MyRequests();
 				if (empty($params)) {
