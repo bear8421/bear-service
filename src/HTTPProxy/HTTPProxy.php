@@ -14,6 +14,7 @@ use Bear8421\Bear\Services\Environment;
 use Bear8421\Bear\Services\Traits\Helper;
 use Bear8421\Bear\Services\Traits\Response;
 use Bear8421\Bear\Services\Traits\Version;
+use nguyenanhung\MyRequests\GetContents;
 use nguyenanhung\MyRequests\MyRequests;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -75,7 +76,12 @@ class HTTPProxy implements Environment
 			];
 		} else {
 			if ($with === 'basic') {
-				$res = file_get_contents($url);
+				$content = new GetContents();
+				$content->setURL($url);
+				$content->setMethod($method);
+				$content->setData($params);
+				$content->sendRequest();
+				$res = $content->getContent();
 			} else {
 				$request = new MyRequests();
 				if (empty($params)) {
