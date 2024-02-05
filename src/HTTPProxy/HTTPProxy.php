@@ -68,15 +68,24 @@ class HTTPProxy implements Environment
 				'code' => self::EXIT_USER_INPUT,
 				'message' => 'Input URL Not Valid'
 			];
+		} elseif ($parseUrl['host'] == '127.0.0.1' || $parseUrl['host'] == 'localhost') {
+			$response = [
+				'code' => self::EXIT_USER_INPUT,
+				'message' => 'Input URL Not Valid'
+			];
 		} else {
-			$request = new MyRequests();
-			if (empty($params)) {
-				$params = array();
+			if ($with === 'basic') {
+				$res = file_get_contents($url);
+			} else {
+				$request = new MyRequests();
+				if (empty($params)) {
+					$params = array();
+				}
+				if (empty($method)) {
+					$method = 'GET';
+				}
+				$res = $request->setRequestNoVerify()->guzzlePhpRequest($url, $params, $method);
 			}
-			if (empty($method)) {
-				$method = 'GET';
-			}
-			$res = $request->setRequestNoVerify()->guzzlePhpRequest($url, $params, $method);
 			$response = array(
 				'status' => self::EXIT_SUCCESS,
 				'message' => 'OK',
