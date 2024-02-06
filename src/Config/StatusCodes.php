@@ -21,6 +21,17 @@ namespace Bear8421\Bear\Services\Config;
  */
 class StatusCodes
 {
+	const EXIT_SUCCESS = 0;
+	const EXIT_ERROR = 1;
+	const EXIT_CONFIG = 3;
+	const EXIT_UNKNOWN_FILE = 4;
+	const EXIT_UNKNOWN_CLASS = 5;
+	const EXIT_UNKNOWN_METHOD = 6;
+	const EXIT_USER_INPUT = 7;
+	const EXIT_DATABASE = 8;
+	const EXIT__AUTO_MIN = 9;
+	const EXIT__AUTO_MAX = 125;
+
 	const HTTP_CONTINUE = 100;
 	const HTTP_SWITCHING_PROTOCOLS = 101;
 	const HTTP_PROCESSING = 102;            // RFC2518
