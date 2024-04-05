@@ -31,7 +31,6 @@ class StatusCodes
 	const EXIT_DATABASE = 8;
 	const EXIT__AUTO_MIN = 9;
 	const EXIT__AUTO_MAX = 125;
-
 	const HTTP_CONTINUE = 100;
 	const HTTP_SWITCHING_PROTOCOLS = 101;
 	const HTTP_PROCESSING = 102;            // RFC2518

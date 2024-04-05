@@ -19,15 +19,15 @@ namespace Bear8421\Bear\Services;
  */
 interface Environment
 {
-    const VERSION = '1.1.8';
+	const VERSION = '1.1.9';
 
-    /**
-     * Function getVersion
-     *
-     * @return string
-     * @author   : 713uk13m <dev@nguyenanhung.com>
-     * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/16/2021 03:01
-     */
-    public function getVersion(): string;
+	/**
+	 * Function getVersion
+	 *
+	 * @return string
+	 * @author   : 713uk13m <dev@nguyenanhung.com>
+	 * @copyright: 713uk13m <dev@nguyenanhung.com>
+	 * @time     : 09/16/2021 03:01
+	 */
+	public function getVersion(): string;
 }

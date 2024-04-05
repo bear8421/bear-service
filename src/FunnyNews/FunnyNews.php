@@ -16,5 +16,5 @@ use Bear8421\Bear\Services\Traits\Version;
 
 class FunnyNews implements Environment
 {
-    use Version, Helper;
+	use Version, Helper;
 }

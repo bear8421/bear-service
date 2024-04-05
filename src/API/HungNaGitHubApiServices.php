@@ -18,29 +18,29 @@ use Bear8421\Bear\Services\Traits\Version;
 
 class HungNaGitHubApiServices implements Environment
 {
-    use Version, Helper, Response;
+	use Version, Helper, Response;
 
-    const GITHUB_STATIC_REPO_API = 'https://api.github.com/repositories/740265525/contents/';
-    const GITHUB_STATIC_DOMAIN = 'https://hungna.github.io/';
+	const GITHUB_STATIC_REPO_API = 'https://api.github.com/repositories/740265525/contents/';
+	const GITHUB_STATIC_DOMAIN = 'https://hungna.github.io/';
 
-    protected function request(): Request
-    {
-        return new Request();
-    }
+	protected function request(): Request
+	{
+		return new Request();
+	}
 
-    public function getDataBackground(string $location_id = ''): array
-    {
-        $location_id = trim($location_id);
-        $githubApi = self::GITHUB_STATIC_REPO_API . 'assets/background/' . $location_id;
-        $fetchData = $this->request()->sendRequest($githubApi);
-        $jsonData = json_decode($fetchData);
-        if ($jsonData === null) {
-            return [];
-        }
-        $data = array();
-        foreach ($jsonData as $item) {
-            $data[] = self::GITHUB_STATIC_DOMAIN . $item->path;
-        }
-        return $data;
-    }
+	public function getDataBackground(string $location_id = ''): array
+	{
+		$location_id = trim($location_id);
+		$githubApi = self::GITHUB_STATIC_REPO_API . 'assets/background/' . $location_id;
+		$fetchData = $this->request()->sendRequest($githubApi);
+		$jsonData = json_decode($fetchData);
+		if ($jsonData === null) {
+			return [];
+		}
+		$data = array();
+		foreach ($jsonData as $item) {
+			$data[] = self::GITHUB_STATIC_DOMAIN . $item->path;
+		}
+		return $data;
+	}
 }

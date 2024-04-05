@@ -1,3 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('Only for IDE Purpose');
-function log_message($level, $message){}
+
+defined('BASEPATH') or exit('Only for IDE Purpose');
+function log_message($level, $message)
+{
+}
