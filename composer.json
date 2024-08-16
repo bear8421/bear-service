@@ -34,7 +34,8 @@
 			"Bear8421\\Bear\\Services\\": "src/"
 		},
 		"files": [
-			"helpers/helpers.php"
+			"helpers/helpers.php",
+			"helpers/admin.php"
 		]
 	}
 }
