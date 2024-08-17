@@ -1,41 +1,44 @@
 {
-	"name": "bear8421/bear-service",
-	"type": "library",
-	"description": "Bear Service API Interface",
-	"keywords": [
-		"bear",
-		"helper",
-		"php"
-	],
-	"homepage": "https://github.com/bear8421/bear-service",
-	"license": "MIT",
-	"minimum-stability": "stable",
-	"authors": [
-		{
-			"name": "Nguyen An Hung",
-			"email": "dev@nguyenanhung.com",
-			"homepage": "https://nguyenanhung.com",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"php": "^7.0 || ^8.0",
-		"ext-curl": "*",
-		"ext-json": "*",
-		"ext-libxml": "*",
-		"ext-simplexml": "*",
-		"nguyenanhung/requests": "^4.0 || ^3.0 || ^2.0 || ^1.0"
-	},
-	"require-dev": {
-		"kint-php/kint": "^1 || ^2 || ^3 || ^4 || ^5"
-	},
-	"autoload": {
-		"psr-4": {
-			"Bear8421\\Bear\\Services\\": "src/"
-		},
-		"files": [
-			"helpers/helpers.php",
-			"helpers/admin.php"
-		]
-	}
+  "name": "bear8421/bear-service",
+  "type": "library",
+  "description": "Bear Service API Interface",
+  "keywords": [
+    "bear",
+    "helper",
+    "php"
+  ],
+  "homepage": "https://github.com/bear8421/bear-service",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Nguyen An Hung",
+      "email": "dev@nguyenanhung.com",
+      "homepage": "https://nguyenanhung.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.0 || ^8.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "nguyenanhung/requests": "^4.0 || ^3.0 || ^2.0 || ^1.0"
+  },
+  "require-dev": {
+    "nguyenanhung/strong-passwords-generator": "^1.0",
+    "bear8421/htpasswd": "^1.0",
+    "tramtro/make-some-noise": "^1.0",
+    "kint-php/kint": "^1 || ^2 || ^3 || ^4 || ^5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bear8421\\Bear\\Services\\": "src/"
+    },
+    "files": [
+      "helpers/helpers.php",
+      "helpers/admin.php"
+    ]
+  }
 }
