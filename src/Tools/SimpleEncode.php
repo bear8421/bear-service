@@ -33,6 +33,8 @@ class SimpleEncode extends HungNgToolsServices
             'sentence_case',
             'capitalized_case',
             'alternating_case',
+            'title_case',
+            'inverse_case',
         );
         if ( ! empty($algorithm)) {
             $needsHash = mb_strtolower($algorithm);
@@ -44,6 +46,15 @@ class SimpleEncode extends HungNgToolsServices
         $alternating_case = '';
         for ($i = 0; $i < strlen($input); $i++) {
             $alternating_case .= ($i % 2 == 0) ? strtolower($input[$i]) : strtoupper($input[$i]);
+        }
+
+        // Title Case (Capitalizes the first letter of major words)
+        $title_case = ucwords($input);
+
+        // InVeRsE CaSe
+        $inverse_case = '';
+        for ($i = 0; $i < strlen($input); $i++) {
+            $inverse_case .= ctype_upper($input[$i]) ? strtolower($input[$i]) : strtoupper($input[$i]);
         }
 
         switch ($needsHash) {
@@ -86,6 +97,12 @@ class SimpleEncode extends HungNgToolsServices
                 break;
             case "alternating_case":
                 $outputContent = $alternating_case;
+                break;
+            case "title_case":
+                $outputContent = $title_case;
+                break;
+            case "inverse_case":
+                $outputContent = $inverse_case;
                 break;
             default:
                 $outputContent = 'Un supported';
