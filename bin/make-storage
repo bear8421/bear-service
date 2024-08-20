@@ -24,41 +24,52 @@ if (!file_exists($dir . '/autoload.php')) {
 require $dir . '/autoload.php';
 
 // Đảm bảo mã nguồn chỉ thực thi khi có tham số
-if ($argc < 1) {
-    echo "Usage: '$argv[0]' <path_to_create>\n";
+if ($argc < 2) {
+    echo "Usage: '$argv[0]' <path_to_create> [file1,file2,...]\n";
     exit(1);
 }
 $profileName = "Bear Services";
 $scriptName = "Create Storage / Logs Directory with Command Line";
-
+$scriptDir = dirname(__FILE__);
+$vendorDir = realpath($dir);
+$homeDir = dirname($vendorDir);
 
 // Get the home directory by traversing up four levels
 $pathToCreate = $argv[1] ?? 'logs';
-$scriptDir = dirname(__FILE__);
+$filesToDefaultCreate = [
+    'index.html' => DefaultHeroDocTemplates::nginx_index_html(),
+    '.htaccess' => DefaultHeroDocTemplates::htaccess_deny_all(),
+    '.gitkeep' => ''
+];
+if (isset($argv[2])) {
+    $fileList = explode(',', $argv[2]);
+    if (!empty($fileList)) {
+        $filesToCreate = [];
+        foreach ($fileList as $file) {
+            $filesToCreate[trim($file)] = '';
+        }
+        $filesToCreate = array_merge($filesToCreate, $filesToDefaultCreate);
+    } else {
+        $filesToCreate = $filesToDefaultCreate;
+    }
+} else {
+    $filesToCreate = $filesToDefaultCreate;
+}
 
-$scriptFilename = './vendor/bin/make-storage';
-
-$vendorDir = realpath($dir);
-$homeDir = dirname($vendorDir);
 $createDir = $homeDir . DIRECTORY_SEPARATOR . $pathToCreate;
 if ($createDir === $homeDir) {
     exit('Not created on $homeDir because invalid rules!');
 }
 $make = new MakeStorage();
-$make->echoHeaderScript($profileName, $scriptName, $scriptFilename);
+$make->echoHeaderScript($profileName, $scriptName, $argv[0] ?? 'make-storage');
 
-echo "Script Directory: " . $make->textColor($make::COLOR_GREEN, $scriptDir) . PHP_EOL;
-echo "Vendor Directory: " . $make->textColor($make::COLOR_GREEN, $vendorDir) . PHP_EOL;
 echo "Home Directory: " . $make->textColor($make::COLOR_GREEN, $homeDir) . PHP_EOL;
 echo "Create Directory: " . $make->textColor($make::COLOR_GREEN, $createDir) . PHP_EOL;
+echo "Vendor Directory: " . $make->textColor($make::COLOR_GREEN, $vendorDir) . PHP_EOL;
+echo "Script Directory: " . $make->textColor($make::COLOR_GREEN, $scriptDir) . PHP_EOL;
 $make->echoBreakLine();
 echo PHP_EOL;
 
-$filesToCreate = [
-    'index.html' => DefaultHeroDocTemplates::nginx_index_html(),
-    '.htaccess' => DefaultHeroDocTemplates::htaccess_deny_all(),
-    '.gitkeep' => ''
-];
 if ($pathToCreate === 'logs') {
     $filesToCreate = array_merge(
         $filesToCreate, [
