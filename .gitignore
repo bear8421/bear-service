@@ -126,3 +126,4 @@ test.php
 cache/*
 !cache/.htaccess
 !cache/.gitkeep
+tmp/

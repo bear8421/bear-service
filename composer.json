@@ -42,5 +42,8 @@
       "helpers/admin.php",
       "helpers/check_system_helper.php"
     ]
-  }
+  },
+  "bin": [
+    "bin/make-storage"
+  ]
 }

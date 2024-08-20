@@ -1,0 +1,47 @@
+#!/usr/bin/env php
+<?php
+
+use Bear8421\Bear\Services\Tools\MakeStorage;
+use Bear8421\Bear\Services\Utils\DefaultHeroDocTemplates;
+
+$dir = __DIR__ . '/..';
+
+if (!file_exists($dir . '/autoload.php')) {
+    $dir = __DIR__ . '/../vendor';
+}
+
+if (!file_exists($dir . '/autoload.php')) {
+    $dir = __DIR__ . '/../../..';
+}
+
+if (!file_exists($dir . '/autoload.php')) {
+    echo 'Autoload not found.';
+    exit(1);
+}
+
+// Đảm bảo mã nguồn chỉ thực thi khi có tham số
+if ($argc < 1) {
+    echo "Usage: {$argv[0]} <path_to_create>\n";
+    exit(1);
+}
+$pathToCreate = $argv[1] ?? 'logs';
+
+// Get the home directory by traversing up four levels
+$scriptDir = dirname(__FILE__);
+$vendorDir = realpath($dir);
+$homeDir = dirname($vendorDir);
+
+$make = new MakeStorage();
+
+$fileData = [
+    '.htaccess' => DefaultHeroDocTemplates::htaccess_deny_all(),
+    '.index.html' => DefaultHeroDocTemplates::nginx_index_html(),
+    '.gitkeep' => ''
+];
+
+try {
+    $make->create($homeDir . '/' . $pathToCreate, $fileData, true);
+} catch (Throwable $e) {
+    echo 'Error: ' . $e->getMessage() . ' on File: ' . $e->getFile() . ' at Line: ' . $e->getLine() . PHP_EOL;
+}
+
