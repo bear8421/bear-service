@@ -19,6 +19,9 @@ if (!file_exists($dir . '/autoload.php')) {
     exit(1);
 }
 
+require $dir . '/autoload.php';
+
+
 // Đảm bảo mã nguồn chỉ thực thi khi có tham số
 if ($argc < 1) {
     echo "Usage: {$argv[0]} <path_to_create>\n";
