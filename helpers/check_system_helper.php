@@ -101,3 +101,9 @@ if (!function_exists('quick_check_telnet_to_port')) {
         return "<tr><td>Test connect '<strong>" . $host . "</strong>' to '<strong>" . $port . "</strong>'</td><td>" . $result . "</td></tr>";
     }
 }
+if (!function_exists('quick_check_connect_to_database')) {
+    function quick_check_connect_to_database($host = '127.0.0.1', $port = 3306): string
+    {
+        return quick_check_telnet_to_port($host, $port, base_url());
+    }
+}

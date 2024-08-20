@@ -10,12 +10,13 @@
 
 namespace Bear8421\Bear\Services\Tools;
 
-use Bear8421\Bear\Services\API\HungNgToolsServices;
+use Bear8421\Bear\Services\API\HungNgCLIServices;
 use InvalidArgumentException;
 use Symfony\Component\Filesystem\Filesystem;
 
-class MakeStorage extends HungNgToolsServices
+class MakeStorage extends HungNgCLIServices
 {
+    const DS = DIRECTORY_SEPARATOR;
     private $filesystem;
     private $whitelistExtensions;
 
@@ -52,6 +53,10 @@ class MakeStorage extends HungNgToolsServices
         // Create the directory if it doesn't exist
         if (!$this->filesystem->exists($directoryName)) {
             $this->filesystem->mkdir($directoryName);
+            echo "Creating directory " . $this->color(
+                    self::COLOR_GREEN,
+                    $directoryName
+                ) . " is successfully!" . PHP_EOL;
         }
 
         // Handle file creation
@@ -66,11 +71,18 @@ class MakeStorage extends HungNgToolsServices
         // Apply chmod 777 if specified
         if ($applyChmod) {
             $this->filesystem->chmod($directoryName, 0777);
+            $textChmod = $this->color(self::COLOR_YELLOW, '0777');
+            $txtDir = $this->color(self::COLOR_GREEN, $directoryName);
+            echo "Apply CHMOD '$textChmod' for directory " . $txtDir . " is successfully!" . PHP_EOL;
             if (is_string($filesToCreate)) {
-                $this->filesystem->chmod($directoryName . DIRECTORY_SEPARATOR . $filesToCreate, 0777);
+                $this->filesystem->chmod($directoryName . self::DS . $filesToCreate, 0777);
+                $txtFile = $this->color(self::COLOR_GREEN, $directoryName . self::DS . $filesToCreate);
+                echo "Apply CHMOD '$textChmod' for file " . $txtFile . " is successfully!" . PHP_EOL;
             } elseif (is_array($filesToCreate)) {
                 foreach (array_keys($filesToCreate) as $filename) {
-                    $this->filesystem->chmod($directoryName . DIRECTORY_SEPARATOR . $filename, 0777);
+                    $this->filesystem->chmod($directoryName . self::DS . $filename, 0777);
+                    $txtFile = $this->color(self::COLOR_GREEN, $directoryName . self::DS . $filename);
+                    echo "Apply CHMOD '$textChmod' for file " . $txtFile . " is successfully!" . PHP_EOL;
                 }
             }
         }
@@ -87,8 +99,9 @@ class MakeStorage extends HungNgToolsServices
     {
         if ($this->checkWhitelistFilename($filename)) {
             $filePath = $directoryName . DIRECTORY_SEPARATOR . $filename;
-            if (!$this->filesystem->exists($filePath) && !empty($content)) {
+            if (!$this->filesystem->exists($filePath)) {
                 $this->filesystem->dumpFile($filePath, $content);
+                echo "Creating file " . $this->textColor(self::COLOR_GREEN, $filePath) . " is successfully!" . PHP_EOL;
             }
         } else {
             throw new InvalidArgumentException("File extension not allowed: $filename");

@@ -36,7 +36,7 @@ class SimpleEncode extends HungNgToolsServices
             'title_case',
             'inverse_case',
         );
-        if ( ! empty($algorithm)) {
+        if (!empty($algorithm)) {
             $needsHash = mb_strtolower($algorithm);
         } else {
             $needsHash = $algorithm;

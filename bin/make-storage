@@ -21,39 +21,52 @@ if (!file_exists($dir . '/autoload.php')) {
 
 require $dir . '/autoload.php';
 
-
 // Đảm bảo mã nguồn chỉ thực thi khi có tham số
 if ($argc < 1) {
-    echo "Usage: {$argv[0]} <path_to_create>\n";
+    echo "Usage: '$argv[0]' <path_to_create>\n";
     exit(1);
 }
-$pathToCreate = $argv[1] ?? 'logs';
+$profileName = "Bear Services";
+$scriptName = "Create Storage / Logs Directory with Command Line";
+
 
 // Get the home directory by traversing up four levels
+$pathToCreate = $argv[1] ?? 'logs';
 $scriptDir = dirname(__FILE__);
+$scriptFilename = $scriptDir . basename(__FILE__);
 $vendorDir = realpath($dir);
-$homeDir = dirname($vendorDir) . '/';
-$createDir = $homeDir . $pathToCreate;
-
-echo "----------------------------------------------------------------" . PHP_EOL;
-echo "Script Directory: " . $scriptDir . PHP_EOL;
-echo "Vendor Directory: " . $vendorDir . PHP_EOL;
-echo "Home Directory: " . $homeDir . PHP_EOL;
-echo "Create Directory: " . $createDir . PHP_EOL;
-echo "----------------------------------------------------------------" . PHP_EOL;
-echo PHP_EOL . PHP_EOL;
-if ($createDir == $homeDir) {
+$homeDir = dirname($vendorDir);
+$createDir = $homeDir . DIRECTORY_SEPARATOR . $pathToCreate;
+if ($createDir === $homeDir) {
     exit('Not created on $homeDir because invalid rules!');
 }
 $make = new MakeStorage();
-$fileData = [
+$make->echoHeaderScript($profileName, $scriptName, $scriptFilename);
+
+echo "Script Directory: " . $make->textColor($make::COLOR_GREEN, $scriptDir) . PHP_EOL;
+echo "Vendor Directory: " . $make->textColor($make::COLOR_GREEN, $vendorDir) . PHP_EOL;
+echo "Home Directory: " . $make->textColor($make::COLOR_GREEN, $homeDir) . PHP_EOL;
+echo "Create Directory: " . $make->textColor($make::COLOR_GREEN, $createDir) . PHP_EOL;
+$make->echoBreakLine();
+echo PHP_EOL;
+
+$filesToCreate = [
+    'index.html' => DefaultHeroDocTemplates::nginx_index_html(),
     '.htaccess' => DefaultHeroDocTemplates::htaccess_deny_all(),
-    '.index.html' => DefaultHeroDocTemplates::nginx_index_html(),
     '.gitkeep' => ''
 ];
+if ($pathToCreate === 'logs') {
+    $filesToCreate = array_merge(
+        $filesToCreate, [
+            'accessDenied.log' => '',
+            'access.log' => '',
+            'error.log' => '',
+        ]
+    );
+}
 try {
-    $make->create($homeDir . '/' . $pathToCreate, $fileData, true);
+    $make->create($createDir, $filesToCreate, true);
 } catch (Throwable $e) {
     echo 'Error: ' . $e->getMessage() . ' on File: ' . $e->getFile() . ' at Line: ' . $e->getLine() . PHP_EOL;
 }
-
+$make->echoFinishedMessage($scriptName);

@@ -18,7 +18,7 @@ class Iptables extends HungNgToolsServices
     protected $rules;
 
     /**
-     * @param  int[]  $portList
+     * @param int[] $portList
      */
     public function setPortList(array $portList): self
     {
@@ -32,16 +32,16 @@ class Iptables extends HungNgToolsServices
         $suffix = " && \\";
         foreach ($this->portList as $port) {
             $port = trim($port);
-            if ( ! empty($newIP)) {
+            if (!empty($newIP)) {
                 $newIP = trim($newIP);
                 $rules .= PHP_EOL . "iptables -I INPUT -i eth0 -s " . $newIP . " -p tcp --destination-port " . $port . " -j ACCEPT" . $suffix;
             }
-            if ( ! empty($oldIP)) {
+            if (!empty($oldIP)) {
                 $oldIP = trim($oldIP);
                 $rules .= PHP_EOL . "iptables -D INPUT -i eth0 -s " . $oldIP . " -p tcp --destination-port " . $port . " -j ACCEPT" . $suffix;
             }
         }
-        if ( ! empty($rules)) {
+        if (!empty($rules)) {
             $begin = "sudo iptables -S && \\";
             $end = PHP_EOL . "sudo service iptables save && \\" . PHP_EOL . 'sudo iptables -S' . PHP_EOL;
             $rules = $begin . $rules . $end;

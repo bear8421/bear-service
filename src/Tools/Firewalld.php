@@ -17,10 +17,10 @@ class Firewalld extends HungNgToolsServices
     /**
      * Generate basic firewall-cmd rule
      *
-     * @param  string  $zone
-     * @param  string  $type
-     * @param  string  $value
-     * @param  bool  $permanent
+     * @param string $zone
+     * @param string $type
+     * @param string $value
+     * @param bool $permanent
      * @return string
      */
     function generateBasicRule(string $zone, string $type, string $value, bool $permanent = true): string
@@ -35,11 +35,11 @@ class Firewalld extends HungNgToolsServices
     /**
      * Generate advanced firewall-cmd rule
      *
-     * @param  string  $zone
-     * @param  string  $type
-     * @param  string  $value
-     * @param  array  $options
-     * @param  bool  $permanent
+     * @param string $zone
+     * @param string $type
+     * @param string $value
+     * @param array $options
+     * @param bool $permanent
      * @return string
      */
     function generateAdvancedRule(

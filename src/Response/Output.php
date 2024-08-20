@@ -19,21 +19,21 @@ namespace Bear8421\Bear\Services\Response;
  */
 class Output
 {
-	/**
-	 * Function writeLn
-	 *
-	 * @param  string|int|array|object  $message
-	 * @param  string  $newLine
-	 *
-	 * @author   : 713uk13m <dev@nguyenanhung.com>
-	 * @copyright: 713uk13m <dev@nguyenanhung.com>
-	 * @time     : 09/16/2021 01:19
-	 */
-	public static function writeLn($message, string $newLine = "\n")
-	{
-		if (is_array($message) || is_object($message)) {
-			$message = json_encode($message);
-		}
-		echo $message . $newLine;
-	}
+    /**
+     * Function writeLn
+     *
+     * @param string|int|array|object $message
+     * @param string $newLine
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/16/2021 01:19
+     */
+    public static function writeLn($message, string $newLine = "\n")
+    {
+        if (is_array($message) || is_object($message)) {
+            $message = json_encode($message);
+        }
+        echo $message . $newLine;
+    }
 }

@@ -20,6 +20,13 @@ namespace Bear8421\Bear\Services;
 interface Environment
 {
     const VERSION = '1.2.4';
+    const POWERED_BY = 'Powered by Hung Nguyen - hungna.dev@gmail.com';
+    const COLOR_NC = "\033[0m";
+    const COLOR_GREEN = "\033[0;32m";
+    const COLOR_YELLOW = "\033[0;33m";
+    const COLOR_CYAN = "\033[0;36m";
+    const COLOR_RED = "\033[0;31m";
+    const CLI_ONLY_MSG = "This script is only for CLI environment.\n";
 
     /**
      * Function getVersion

@@ -12,17 +12,17 @@ namespace Bear8421\Bear\Services\Traits;
 
 trait Response
 {
-	protected $response = array();
+    protected $response = array();
 
-	/**
-	 * Function getResponse
-	 *
-	 * User: 713uk13m <dev@nguyenanhung.com>
-	 * Copyright: 713uk13m <dev@nguyenanhung.com>
-	 * @return array
-	 */
-	public function getResponse(): array
-	{
-		return $this->response;
-	}
+    /**
+     * Function getResponse
+     *
+     * User: 713uk13m <dev@nguyenanhung.com>
+     * Copyright: 713uk13m <dev@nguyenanhung.com>
+     * @return array
+     */
+    public function getResponse(): array
+    {
+        return $this->response;
+    }
 }
