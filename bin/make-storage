@@ -4,10 +4,12 @@
 use Bear8421\Bear\Services\Tools\MakeStorage;
 use Bear8421\Bear\Services\Utils\DefaultHeroDocTemplates;
 
+$isBearService = false;
 $dir = __DIR__ . '/..';
 
 if (!file_exists($dir . '/autoload.php')) {
     $dir = __DIR__ . '/../vendor';
+    $isBearService = true;
 }
 
 if (!file_exists($dir . '/autoload.php')) {
@@ -33,7 +35,9 @@ $scriptName = "Create Storage / Logs Directory with Command Line";
 // Get the home directory by traversing up four levels
 $pathToCreate = $argv[1] ?? 'logs';
 $scriptDir = dirname(__FILE__);
-$scriptFilename = $scriptDir . basename(__FILE__);
+
+$scriptFilename = './vendor/bin/make-storage';
+
 $vendorDir = realpath($dir);
 $homeDir = dirname($vendorDir);
 $createDir = $homeDir . DIRECTORY_SEPARATOR . $pathToCreate;
