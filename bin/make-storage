@@ -29,22 +29,25 @@ $pathToCreate = $argv[1] ?? 'logs';
 // Get the home directory by traversing up four levels
 $scriptDir = dirname(__FILE__);
 $vendorDir = realpath($dir);
-$homeDir = dirname($vendorDir);
+$homeDir = dirname($vendorDir) . '/';
+$createDir = $homeDir . $pathToCreate;
 
 echo "----------------------------------------------------------------" . PHP_EOL;
 echo "Script Directory: " . $scriptDir . PHP_EOL;
 echo "Vendor Directory: " . $vendorDir . PHP_EOL;
 echo "Home Directory: " . $homeDir . PHP_EOL;
+echo "Create Directory: " . $createDir . PHP_EOL;
 echo "----------------------------------------------------------------" . PHP_EOL;
 echo PHP_EOL . PHP_EOL;
+if ($createDir == $homeDir) {
+    exit('Not created on $homeDir because invalid rules!');
+}
 $make = new MakeStorage();
-
 $fileData = [
     '.htaccess' => DefaultHeroDocTemplates::htaccess_deny_all(),
     '.index.html' => DefaultHeroDocTemplates::nginx_index_html(),
     '.gitkeep' => ''
 ];
-
 try {
     $make->create($homeDir . '/' . $pathToCreate, $fileData, true);
 } catch (Throwable $e) {
