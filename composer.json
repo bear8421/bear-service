@@ -28,6 +28,7 @@
   },
   "require-dev": {
     "nguyenanhung/strong-passwords-generator": "^1.0",
+    "nguyenanhung/basic-firewall": "^2.0",
     "bear8421/htpasswd": "^1.0",
     "tramtro/make-some-noise": "^1.0",
     "kint-php/kint": "^1 || ^2 || ^3 || ^4 || ^5"
@@ -38,7 +39,8 @@
     },
     "files": [
       "helpers/helpers.php",
-      "helpers/admin.php"
+      "helpers/admin.php",
+      "helpers/check_system_helper.php"
     ]
   }
 }
