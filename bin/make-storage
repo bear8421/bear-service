@@ -31,6 +31,12 @@ $scriptDir = dirname(__FILE__);
 $vendorDir = realpath($dir);
 $homeDir = dirname($vendorDir);
 
+echo "----------------------------------------------------------------" . PHP_EOL;
+echo "Script Directory: " . $scriptDir . PHP_EOL;
+echo "Vendor Directory: " . $vendorDir . PHP_EOL;
+echo "Home Directory: " . $homeDir . PHP_EOL;
+echo "----------------------------------------------------------------" . PHP_EOL;
+echo PHP_EOL . PHP_EOL;
 $make = new MakeStorage();
 
 $fileData = [
