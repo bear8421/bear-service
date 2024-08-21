@@ -8,6 +8,63 @@ if (!function_exists('quick_check_system')) {
         return new CheckSystem();
     }
 }
+if (!function_exists('quick_check_php_need_environment')) {
+    function quick_check_php_need_environment(): array
+    {
+        // Kiểm tra nhanh các hàm, extension trong dự án
+        // Function: các hàm nên tắt
+        // Extension: các extension nên bật
+        return [
+            'functions_to_check' => [
+                'exec',
+                'system',
+                'shell_exec',
+                'passthru',
+                'popen',
+                'proc_open',
+                'fsockopen',
+                'pfsockopen',
+                'stream_socket_client',
+                'stream_socket_server',
+                'stream_socket_accept',
+                'phpinfo',
+                'ini_set',
+                'ini_get',
+                'putenv',
+                'getenv',
+                'eval',
+                'create_function',
+                'assert',
+                'preg_replace'
+            ],
+            'extensions_to_check' => [
+                'Zend OPcache',
+                'curl',
+                'pdo',
+                'pdo_mysql',
+                'pdo_sqlite',
+                'mysqli',
+                'gd',
+                'mbstring',
+                'session',
+                'sockets',
+                'bcmath',
+                'libxml',
+                'xml',
+                'xmlwriter',
+                'xmlreader',
+                'openssl',
+                'ctype',
+                'dom',
+                'mcrypt',
+                'redis',
+                'memcached',
+                'gearmand',
+                'sodium',
+            ],
+        ];
+    }
+}
 if (!function_exists('icon_check')) {
     function icon_check($check = false): string
     {
