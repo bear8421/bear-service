@@ -19,7 +19,7 @@ namespace Bear8421\Bear\Services;
  */
 interface Environment
 {
-    const VERSION = '1.2.8';
+    const VERSION = '1.2.9';
     const POWERED_BY = 'Powered by Hung Nguyen - hungna.dev@gmail.com';
     const COLOR_NC = "\033[0m";
     const COLOR_GREEN = "\033[0;32m";
