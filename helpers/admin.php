@@ -1,30 +1,29 @@
 <?php
 
 if (!function_exists('apply_url_link')) {
-    function apply_url_link($name = '', $link = ''): string
+    function apply_url_link($name = '', $link = '', $ext = ''): string
     {
         $str = trim($name) . ': ';
         $title = 'title="Click here to tools: ' . trim($name) . '"';
         $str .= '<a ' . $title . ' href="' . trim($link) . '" target="_blank">' . trim($link) . '</a>';
-        return trim($str);
+        $str = trim($str);
+        if (!empty($ext)) {
+            if (extension_loaded('redis')) {
+                return $str;
+            } else {
+                return '';
+            }
+        }
+        return $str;
     }
 }
-
-if (!function_exists('admin_apply_url_link')) {
-    function admin_apply_url_link($name = '', $link = ''): string
+if (!function_exists('apply_li_url_link')) {
+    function apply_li_url_link($name = '', $link = '', $ext = ''): string
     {
-        return '<li>' . apply_url_link($name, $link) . '</li>';
-    }
-}
-
-if (!function_exists('admin_apply_url_link_required_ext')) {
-    function admin_apply_url_link_required_ext($name = '', $link = '', $ext = ''): string
-    {
-        if (empty($ext)) {
-            return '';
+        $str = apply_url_link($name, $link, $ext);
+        if (!empty($str)) {
+            return '<li>' . $str . '</li>';
         }
-        if (extension_loaded($ext)) {
-            return admin_apply_url_link($name, $link);
-        }
+        return '';
     }
 }
