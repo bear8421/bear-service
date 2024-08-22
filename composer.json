@@ -39,6 +39,7 @@
     },
     "files": [
       "helpers/helpers.php",
+      "helpers/author.php",
       "helpers/admin.php",
       "helpers/check_system_helper.php"
     ]
