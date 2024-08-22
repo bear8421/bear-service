@@ -2,7 +2,6 @@
 <?php
 
 use Bear8421\Bear\Services\Tools\MakeStorage;
-use Bear8421\Bear\Services\Utils\DefaultHeroDocTemplates;
 
 $isBearService = false;
 $dir = __DIR__ . '/..';
@@ -36,11 +35,7 @@ $homeDir = dirname($vendorDir);
 
 // Get the home directory by traversing up four levels
 $pathToCreate = $argv[1] ?? 'logs';
-$filesToDefaultCreate = [
-    'index.html' => DefaultHeroDocTemplates::nginx_index_html(),
-    '.htaccess' => DefaultHeroDocTemplates::htaccess_deny_all(),
-    '.gitkeep' => ''
-];
+$filesToDefaultCreate = [];
 if (isset($argv[2])) {
     $fileList = explode(',', $argv[2]);
     if (!empty($fileList)) {
@@ -71,8 +66,7 @@ $make->echoBreakLine();
 echo PHP_EOL;
 
 if ($pathToCreate === 'logs') {
-    $filesToCreate = array_merge(
-        $filesToCreate, [
+    $filesToCreate = array_merge($filesToCreate, [
             'accessDenied.log' => '',
             'access.log' => '',
             'error.log' => '',

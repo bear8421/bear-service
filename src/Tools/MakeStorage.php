@@ -12,7 +12,9 @@ namespace Bear8421\Bear\Services\Tools;
 
 use Bear8421\Bear\Services\API\HungNgCLIServices;
 use InvalidArgumentException;
-use Symfony\Component\Filesystem\Filesystem;
+
+//use Symfony\Component\Filesystem\Filesystem;
+use nguyenanhung\Libraries\Filesystem\Filesystem;
 
 class MakeStorage extends HungNgCLIServices
 {
@@ -52,7 +54,12 @@ class MakeStorage extends HungNgCLIServices
     {
         // Create the directory if it doesn't exist
         if (!$this->filesystem->exists($directoryName)) {
-            $this->filesystem->mkdir($directoryName);
+            if ($applyChmod) {
+                create_new_folder($directoryName, 0777);
+            } else {
+                create_new_folder($directoryName);
+            }
+
             echo "Creating directory " . $this->color(
                     self::COLOR_GREEN,
                     $directoryName
@@ -60,11 +67,13 @@ class MakeStorage extends HungNgCLIServices
         }
 
         // Handle file creation
-        if (is_string($filesToCreate)) {
-            $this->createFile($directoryName, $filesToCreate);
-        } elseif (is_array($filesToCreate)) {
-            foreach ($filesToCreate as $filename => $content) {
-                $this->createFile($directoryName, $filename, $content);
+        if (!empty($filesToCreate)) {
+            if (is_string($filesToCreate)) {
+                $this->createFile($directoryName, $filesToCreate);
+            } elseif (is_array($filesToCreate)) {
+                foreach ($filesToCreate as $filename => $content) {
+                    $this->createFile($directoryName, $filename, $content);
+                }
             }
         }
 
@@ -74,15 +83,18 @@ class MakeStorage extends HungNgCLIServices
             $textChmod = $this->color(self::COLOR_YELLOW, '0777');
             $txtDir = $this->color(self::COLOR_GREEN, $directoryName);
             echo "Apply CHMOD '$textChmod' for directory " . $txtDir . " is successfully!" . PHP_EOL;
-            if (is_string($filesToCreate)) {
-                $this->filesystem->chmod($directoryName . self::DS . $filesToCreate, 0777);
-                $txtFile = $this->color(self::COLOR_GREEN, $directoryName . self::DS . $filesToCreate);
-                echo "Apply CHMOD '$textChmod' for file " . $txtFile . " is successfully!" . PHP_EOL;
-            } elseif (is_array($filesToCreate)) {
-                foreach (array_keys($filesToCreate) as $filename) {
-                    $this->filesystem->chmod($directoryName . self::DS . $filename, 0777);
-                    $txtFile = $this->color(self::COLOR_GREEN, $directoryName . self::DS . $filename);
+
+            if (!empty($filesToCreate)) {
+                if (is_string($filesToCreate)) {
+                    $this->filesystem->chmod($directoryName . self::DS . $filesToCreate, 0777);
+                    $txtFile = $this->color(self::COLOR_GREEN, $directoryName . self::DS . $filesToCreate);
                     echo "Apply CHMOD '$textChmod' for file " . $txtFile . " is successfully!" . PHP_EOL;
+                } elseif (is_array($filesToCreate)) {
+                    foreach (array_keys($filesToCreate) as $filename) {
+                        $this->filesystem->chmod($directoryName . self::DS . $filename, 0777);
+                        $txtFile = $this->color(self::COLOR_GREEN, $directoryName . self::DS . $filename);
+                        echo "Apply CHMOD '$textChmod' for file " . $txtFile . " is successfully!" . PHP_EOL;
+                    }
                 }
             }
         }
