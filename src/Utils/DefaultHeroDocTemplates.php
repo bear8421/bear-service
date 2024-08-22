@@ -9,6 +9,8 @@ class DefaultHeroDocTemplates extends HungNgToolsServices
     public static function htaccess_deny_all(): string
     {
         return <<<HTACCESS
+Options -Indexes
+AddType text/plain .php3 .php4 .php5 .php .cgi .asp .aspx .html .css .js
 <IfModule authz_core_module>
     Require all denied
 </IfModule>
@@ -39,6 +41,22 @@ HTACCESS;
 <p>If you see this page, the nginx web server is successfully installed and working. Further configuration is required.</p>
 <p>For online documentation and support please refer to <a href="https://nginx.org/">nginx.org</a>.<br/>Commercial support is available at <a href="https://nginx.com/">nginx.com</a>.</p>
 <p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+<!-- (c) 2024 Powered by Hung Nguyen <dev@nguyenanhung.com> -->
+NGINX_INDEX_HTML;
+    }
+
+    public static function default_403_simple_html(): string
+    {
+        return <<<NGINX_INDEX_HTML
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>403 Forbidden</title>
+</head>
+<body>
+    <p>Directory access is forbidden.</p>
 </body>
 </html>
 <!-- (c) 2024 Powered by Hung Nguyen <dev@nguyenanhung.com> -->
