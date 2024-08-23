@@ -16,6 +16,7 @@ if (!function_exists('quick_check_php_need_environment')) {
         // Extension: các extension nên bật
         return [
             'functions_to_check' => [
+                'openssl_digest',
                 'exec',
                 'system',
                 'shell_exec',
