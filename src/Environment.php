@@ -30,13 +30,5 @@ interface Environment
     const COLOR_RED = "\033[0;31m";
     const CLI_ONLY_MSG = "This script is only for CLI environment.\n";
 
-    /**
-     * Function getVersion
-     *
-     * @return string
-     * @author   : 713uk13m <dev@nguyenanhung.com>
-     * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 09/16/2021 03:01
-     */
     public function getVersion(): string;
 }
