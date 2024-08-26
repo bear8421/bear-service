@@ -15,8 +15,8 @@ if (!function_exists('basic_auth_force_logout_script')) {
 JAVASCRIPT;
     }
 }
-if (!function_exists('basic_auth_force_logout')) {
-    function basic_auth_force_logout(): string
+if (!function_exists('basic_auth_force_logout_link')) {
+    function basic_auth_force_logout_link(): string
     {
         return '<a href="#" onclick="forceLogoutBasicAuth(); return false;">Logout</a>';
     }
