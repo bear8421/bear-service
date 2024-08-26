@@ -14,6 +14,30 @@ use Bear8421\Bear\Services\API\HungNgToolsServices;
 
 class SimpleEncode extends HungNgToolsServices
 {
+    protected function encode_alternating_case($input = ''): string
+    {
+        // aLtErNaTiNg cAsE
+        $alternating_case = '';
+        if (!empty($input)) {
+            for ($i = 0; $i < strlen($input); $i++) {
+                $alternating_case .= ($i % 2 == 0) ? strtolower($input[$i]) : strtoupper($input[$i]);
+            }
+        }
+        return $alternating_case;
+    }
+
+    protected function encode_inverse_case($input = ''): string
+    {
+        // InVeRsE CaSe
+        $inverse_case = '';
+        if (!empty($input)) {
+            for ($i = 0; $i < strlen($input); $i++) {
+                $inverse_case .= ctype_upper($input[$i]) ? strtolower($input[$i]) : strtoupper($input[$i]);
+            }
+        }
+        return $inverse_case;
+    }
+
     public function encode($input, $algorithm = 'md5'): array
     {
         $supported = array(
@@ -36,26 +60,8 @@ class SimpleEncode extends HungNgToolsServices
             'title_case',
             'inverse_case',
         );
-        if (!empty($algorithm)) {
-            $needsHash = mb_strtolower($algorithm);
-        } else {
-            $needsHash = $algorithm;
-        }
 
-        // aLtErNaTiNg cAsE
-        $alternating_case = '';
-        for ($i = 0; $i < strlen($input); $i++) {
-            $alternating_case .= ($i % 2 == 0) ? strtolower($input[$i]) : strtoupper($input[$i]);
-        }
-
-        // Title Case (Capitalizes the first letter of major words)
-        $title_case = ucwords($input);
-
-        // InVeRsE CaSe
-        $inverse_case = '';
-        for ($i = 0; $i < strlen($input); $i++) {
-            $inverse_case .= ctype_upper($input[$i]) ? strtolower($input[$i]) : strtoupper($input[$i]);
-        }
+        $needsHash = !empty($algorithm) ? mb_strtolower($algorithm) : $algorithm;
 
         switch ($needsHash) {
             case "md5":
@@ -96,13 +102,14 @@ class SimpleEncode extends HungNgToolsServices
                 $outputContent = ucwords(strtolower($input));
                 break;
             case "alternating_case":
-                $outputContent = $alternating_case;
+                $outputContent = $this->encode_alternating_case($input);
                 break;
             case "title_case":
-                $outputContent = $title_case;
+                // Title Case (Capitalizes the first letter of major words)
+                $outputContent = !empty($input) ? ucwords($input) : '';
                 break;
             case "inverse_case":
-                $outputContent = $inverse_case;
+                $outputContent = $this->encode_inverse_case($input);
                 break;
             default:
                 $outputContent = 'Un supported';
