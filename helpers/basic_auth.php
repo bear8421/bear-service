@@ -16,8 +16,8 @@ JAVASCRIPT;
     }
 }
 if (!function_exists('basic_auth_force_logout_link')) {
-    function basic_auth_force_logout_link(): string
+    function basic_auth_force_logout_link($begin = '', $end = ''): string
     {
-        return '<a href="#" onclick="forceLogoutBasicAuth(); return false;">Logout</a>';
+        return $begin . '<a href="#" onclick="forceLogoutBasicAuth(); return false;">Logout</a>' . $end;
     }
 }
