@@ -35,13 +35,13 @@ if (!function_exists('report_http_connection_message')) {
         $host = $_SERVER['HTTP_HOST'] ?? '';
         $port = $_SERVER['SERVER_PORT'] ?? '';
         $serverIP = $_SERVER['SERVER_ADDR'] ?? '';
-        $authUser = isset($_SERVER['PHP_AUTH_USER']) ? 'Authorization User: ' . $_SERVER['PHP_AUTH_USER'] . ' - ' : '';
+        $user = isset($_SERVER['PHP_AUTH_USER']) ? 'Authorization User: ' . $_SERVER['PHP_AUTH_USER'] . ' - ' : '';
         $serverName = isset($_SERVER['SERVER_NAME']) ? 'Server Name: ' . $_SERVER['SERVER_NAME'] . ' - ' : '';
         $country = isset($_SERVER['HTTP_CF_IPCOUNTRY']) ? ' (' . $_SERVER['HTTP_CF_IPCOUNTRY'] . ')' : '';
         $referer = isset($_SERVER['HTTP_REFERER']) ? ', Referer: ' . $_SERVER['HTTP_REFERER'] : '';
         $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? ', User Agent: ' . $_SERVER['HTTP_USER_AGENT'] : '';
         // Build the log message
-        $message = $authUser . $serverName . 'Connection via ' . $protocol . ': ' . $scheme . '://' . $host;
+        $message = $user . $serverName . 'Connection via ' . $protocol . ': ' . $scheme . '://' . $host;
         $message .= ', Port: ' . $port . ', Server IP: ' . $serverIP;
         $message .= ', from IP:' . getIPAddress() . $country;
         $message .= $referer;

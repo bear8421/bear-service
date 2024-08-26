@@ -41,6 +41,7 @@
       "helpers/helpers.php",
       "helpers/author.php",
       "helpers/admin.php",
+      "helpers/basic_auth.php",
       "helpers/check_system_helper.php"
     ]
   },
