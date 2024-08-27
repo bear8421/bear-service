@@ -11,42 +11,32 @@ class CreateDirectoryCommand extends WithCommand
 
     public function createDirectory($path): bool
     {
+        $name = $this->color(self::COLOR_GREEN, $path);
         if (empty($path)) {
             echo "Invalid or empty directory path";
             return false;
         }
         if (create_new_folder($path) === true) {
-            echo "Create directory: '" . $this->color(self::COLOR_GREEN, $path) . "' " . $this->color(
-                    self::COLOR_YELLOW,
-                    'successfully!'
-                ) . PHP_EOL;
+            echo "Create directory: '" . $name . "' " . $this->isSuccess() . PHP_EOL;
             return true;
         } else {
-            echo "Create directory: '" . $this->color(self::COLOR_GREEN, $path) . "' " . $this->color(
-                    self::COLOR_RED,
-                    'failed!'
-                ) . PHP_EOL;
+            echo "Create directory: '" . $name . "' " . $this->isFailed() . PHP_EOL;
             return false;
         }
     }
 
     public function createFileOnDirectory($file, $content = ''): bool
     {
+        $name = $this->color(self::COLOR_GREEN, $file);
         if (empty($file)) {
             echo "Invalid or empty file path";
             return false;
         }
         if (file_append($file, $content) === true) {
-            echo "Create file: '" . $this->color(self::COLOR_GREEN, $file) . "' " . $this->color(
-                    self::COLOR_YELLOW,
-                    'successfully!'
-                ) . PHP_EOL;
+            echo "Create file: '" . $name . "' " . $this->isSuccess() . PHP_EOL;
             return true;
         } else {
-            echo "Create file: '" . $this->color(self::COLOR_GREEN, $file) . "' " . $this->color(
-                    self::COLOR_RED,
-                    'failed!'
-                ) . PHP_EOL;
+            echo "Create file: '" . $name . "' " . $this->isFailed() . PHP_EOL;
             return false;
         }
     }

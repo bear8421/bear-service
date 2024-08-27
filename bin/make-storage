@@ -67,11 +67,10 @@ echo PHP_EOL;
 
 if ($pathToCreate === 'logs') {
     $filesToCreate = array_merge($filesToCreate, [
-            'accessDenied.log' => '',
-            'access.log' => '',
-            'error.log' => '',
-        ]
-    );
+        'accessDenied.log' => '',
+        'access.log' => '',
+        'error.log' => '',
+    ]);
 }
 try {
     $make->create($createDir, $filesToCreate, true);

@@ -19,7 +19,7 @@ namespace Bear8421\Bear\Services;
  */
 interface Environment
 {
-    const VERSION = '1.3.1';
+    const VERSION = '1.3.2';
     const POWERED_BY = 'Powered by Hung Nguyen - hungna.dev@gmail.com';
     const POWERED_BY_NAME = 'Hung Nguyen';
     const POWERED_BY_EMAIL = 'hungna.dev@gmail.com';

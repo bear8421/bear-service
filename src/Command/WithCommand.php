@@ -92,4 +92,14 @@ class WithCommand implements Environment
         }
         return $this;
     }
+
+    protected function isSuccess(): string
+    {
+        return $this->color(self::COLOR_YELLOW, 'successfully!');
+    }
+
+    protected function isFailed(): string
+    {
+        return $this->color(self::COLOR_RED, 'failed!');
+    }
 }
