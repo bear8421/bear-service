@@ -8,7 +8,7 @@ if (!function_exists('apply_url_link')) {
         $str .= '<a ' . $title . ' href="' . trim($link) . '" target="_blank">' . trim($link) . '</a>';
         $str = trim($str);
         if (!empty($ext)) {
-            if (extension_loaded('redis')) {
+            if (extension_loaded($ext)) {
                 return $str;
             } else {
                 return '';
