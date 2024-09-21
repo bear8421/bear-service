@@ -1,4 +1,9 @@
-[![Latest Stable Version](http://poser.pugx.org/bear8421/bear-service/v)](https://packagist.org/packages/bear8421/bear-service) [![Total Downloads](http://poser.pugx.org/bear8421/bear-service/downloads)](https://packagist.org/packages/bear8421/bear-service) [![Latest Unstable Version](http://poser.pugx.org/bear8421/bear-service/v/unstable)](https://packagist.org/packages/bear8421/bear-service) [![License](http://poser.pugx.org/bear8421/bear-service/license)](https://packagist.org/packages/bear8421/bear-service) [![PHP Version Require](http://poser.pugx.org/bear8421/bear-service/require/php)](https://packagist.org/packages/bear8421/bear-service)
+[![Latest Stable Version](https://img.shields.io/packagist/v/bear8421/bear-service.svg?style=flat-square)](https://packagist.org/packages/bear8421/bear-service)
+[![Total Downloads](https://img.shields.io/packagist/dt/bear8421/bear-service.svg?style=flat-square)](https://packagist.org/packages/bear8421/bear-service)
+[![Daily Downloads](https://img.shields.io/packagist/dd/bear8421/bear-service.svg?style=flat-square)](https://packagist.org/packages/bear8421/bear-service)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/bear8421/bear-service.svg?style=flat-square)](https://packagist.org/packages/bear8421/bear-service)
+[![License](https://img.shields.io/packagist/l/bear8421/bear-service.svg?style=flat-square)](https://packagist.org/packages/bear8421/bear-service)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/bear8421/bear-service/php)](https://packagist.org/packages/bear8421/bear-service)
 
 # Bear API Service
 
