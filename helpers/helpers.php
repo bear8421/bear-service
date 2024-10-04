@@ -96,21 +96,12 @@ if (!function_exists('getDailyRandomQuote')) {
             return null;
         }
         $result = null;
-        $config = config_item('external_api');
-        $apis = $config['thudo_api_content_v3'];
-        $url = $apis['hostname'] . $apis['apis']['getRandomDanhNgon'];
-        $params = array(
-            'txtData' => 1,
-            'contentId' => 1,
-            'totalRecord' => 1,
-            'signature' => hash('sha256', 1 . $apis['prefix'] . $apis['token'])
-        );
-        $request = sendSimpleRequest($url, $params);
+        $api = "https://quote.nguyenanhung.com/?type=json";
+        $request = sendSimpleRequest($api);
         $res = json_decode($request, false);
         if (isset($res->status) && $res->status === 0) {
-            $result = $res->data->content;
+            $result = $res->content;
         }
-
         return $result;
     }
 }
