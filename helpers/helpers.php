@@ -92,12 +92,11 @@ if (!function_exists('getDailyRandomQuote')) {
      */
     function getDailyRandomQuote()
     {
-        if (!function_exists('config_item')) {
-            return null;
-        }
         $result = null;
-        $api = "https://quote.nguyenanhung.com/?type=json";
-        $request = sendSimpleRequest($api);
+        $request = sendSimpleRequest(
+            'https://quote.nguyenanhung.com/',
+            array('type' => 'json')
+        );
         $res = json_decode($request, false);
         if (isset($res->status) && $res->status === 0) {
             $result = $res->content;
