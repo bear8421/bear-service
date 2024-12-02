@@ -23,7 +23,6 @@ interface Environment
     const POWERED_BY = 'Powered by Hung Nguyen - hungna.dev@gmail.com';
     const POWERED_BY_NAME = 'Hung Nguyen';
     const POWERED_BY_EMAIL = 'hungna.dev@gmail.com';
-    const COLOR_NC = "\033[0m";
     const COLOR_GREEN = "\033[0;32m";
     const COLOR_YELLOW = "\033[0;33m";
     const COLOR_CYAN = "\033[0;36m";
