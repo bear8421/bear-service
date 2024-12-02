@@ -11,6 +11,7 @@
 namespace Bear8421\Bear\Services\Tools;
 
 use Bear8421\Bear\Services\API\HungNgToolsServices;
+use nguyenanhung\Libraries\Slug\SlugUrl;
 
 class SimpleEncode extends HungNgToolsServices
 {
@@ -59,6 +60,7 @@ class SimpleEncode extends HungNgToolsServices
             'alternating_case',
             'title_case',
             'inverse_case',
+            'slugify',
         );
 
         $needsHash = !empty($algorithm) ? mb_strtolower($algorithm) : $algorithm;
@@ -110,6 +112,10 @@ class SimpleEncode extends HungNgToolsServices
                 break;
             case "inverse_case":
                 $outputContent = $this->encode_inverse_case($input);
+                break;
+            case "slugify":
+                $slug = new SlugUrl();
+                $outputContent = $slug->slugify($input);
                 break;
             default:
                 $outputContent = 'Un supported';

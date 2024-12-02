@@ -25,7 +25,8 @@
         "ext-libxml": "*",
         "ext-simplexml": "*",
         "ext-openssl": "*",
-        "nguyenanhung/requests": "^4.0 || ^3.0 || ^2.0 || ^1.0"
+        "nguyenanhung/requests": "^4.0 || ^3.0 || ^2.0 || ^1.0",
+        "nguyenanhung/slug-helper": "^3.0 || ^2.0 || ^1.0"
     },
     "require-dev": {
         "nguyenanhung/strong-passwords-generator": "^1.0",
