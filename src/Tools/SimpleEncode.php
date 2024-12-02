@@ -63,64 +63,66 @@ class SimpleEncode extends HungNgToolsServices
             'slugify',
         );
 
-        $needsHash = !empty($algorithm) ? mb_strtolower($algorithm) : $algorithm;
-
-        switch ($needsHash) {
-            case "md5":
-            case "sha1":
-            case "sha384":
-            case "sha512":
-            case "rimed128":
-            case "ripemd256":
-                $outputContent = hash($needsHash, $input);
-                break;
-            case "base64":
-                $outputContent = base64_encode($input);
-                break;
-            case "supper_base64":
-                $outputContent = trim($input);
-                $outputContent = base64_encode($outputContent);
-                $outputContent = strrev($outputContent);
-                $outputContent = base64_encode($outputContent);
-                $outputContent = base64_encode($outputContent);
-                $outputContent = strrev($outputContent);
-                break;
-            case "password_hash":
-                $outputContent = password_hash($input, PASSWORD_DEFAULT);
-                break;
-            case "htpasswd":
-                $outputContent = generateHtpasswdPassword($input);
-                break;
-            case "lower_case":
-                $outputContent = strtolower($input);
-                break;
-            case "upper_case":
-                $outputContent = strtoupper($input);
-                break;
-            case "sentence_case":
-                $outputContent = ucfirst(strtolower($input));
-                break;
-            case "capitalized_case":
-                $outputContent = ucwords(strtolower($input));
-                break;
-            case "alternating_case":
-                $outputContent = $this->encode_alternating_case($input);
-                break;
-            case "title_case":
-                // Title Case (Capitalizes the first letter of major words)
-                $outputContent = !empty($input) ? ucwords($input) : '';
-                break;
-            case "inverse_case":
-                $outputContent = $this->encode_inverse_case($input);
-                break;
-            case "slugify":
-                $slug = new SlugUrl();
-                $outputContent = $slug->slugify($input);
-                break;
-            default:
-                $outputContent = 'Un supported';
+        if (empty($input)) {
+            $outputContent = 'Please provide Input string you want';
+        } else {
+            $needsHash = !empty($algorithm) ? mb_strtolower($algorithm) : $algorithm;
+            switch ($needsHash) {
+                case "md5":
+                case "sha1":
+                case "sha384":
+                case "sha512":
+                case "rimed128":
+                case "ripemd256":
+                    $outputContent = hash($needsHash, $input);
+                    break;
+                case "base64":
+                    $outputContent = base64_encode($input);
+                    break;
+                case "supper_base64":
+                    $outputContent = trim($input);
+                    $outputContent = base64_encode($outputContent);
+                    $outputContent = strrev($outputContent);
+                    $outputContent = base64_encode($outputContent);
+                    $outputContent = base64_encode($outputContent);
+                    $outputContent = strrev($outputContent);
+                    break;
+                case "password_hash":
+                    $outputContent = password_hash($input, PASSWORD_DEFAULT);
+                    break;
+                case "htpasswd":
+                    $outputContent = generateHtpasswdPassword($input);
+                    break;
+                case "lower_case":
+                    $outputContent = strtolower($input);
+                    break;
+                case "upper_case":
+                    $outputContent = strtoupper($input);
+                    break;
+                case "sentence_case":
+                    $outputContent = ucfirst(strtolower($input));
+                    break;
+                case "capitalized_case":
+                    $outputContent = ucwords(strtolower($input));
+                    break;
+                case "alternating_case":
+                    $outputContent = $this->encode_alternating_case($input);
+                    break;
+                case "title_case":
+                    // Title Case (Capitalizes the first letter of major words)
+                    $outputContent = !empty($input) ? ucwords($input) : '';
+                    break;
+                case "inverse_case":
+                    $outputContent = $this->encode_inverse_case($input);
+                    break;
+                case "slugify":
+                    $slug = new SlugUrl();
+                    $outputContent = $slug->slugify($input);
+                    break;
+                default:
+                    $outputContent = 'Un supported';
+            }
         }
-
         return array(
             'supported' => $supported,
             'input' => $input,
